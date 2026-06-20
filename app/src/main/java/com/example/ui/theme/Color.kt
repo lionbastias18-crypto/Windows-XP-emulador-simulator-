@@ -24,3 +24,15 @@ val XpBorderHighlight = Color(0xFFFFFFFF)
 val XpBorderShadow = Color(0xFF919B9C)
 val XpOrangeAccent = Color(0xFFFF9C00)
 
+// --- Natural Tones Theme Colors ---
+val NaturalSkyBlue = Color(0xFF4A90E2)
+val NaturalLightBlue = Color(0xFF75C0FF)
+val NaturalGrassGreen = Color(0xFF48A038)
+val NaturalTaskbarBlue = Color(0xFF245EDC)
+val NaturalStartGreen = Color(0xFF3C911A)
+val NaturalStartGreenLight = Color(0xFF67C246)
+val NaturalTrayBlue = Color(0xFF0996F1)
+val NaturalBorderBlue = Color(0xFF0055E3)
+val NaturalCloseRed = Color(0xFFE21225)
+
+

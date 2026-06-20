@@ -102,7 +102,7 @@ fun XpWindowFrame(
     val baseModifier = if (isMaximized) {
         Modifier
             .fillMaxSize()
-            .padding(bottom = 40.dp) // Leave taskbar space
+            .padding(bottom = 48.dp) // Leave taskbar space
     } else {
         Modifier
             .offset { IntOffset(offsetX.roundToInt(), offsetY.roundToInt()) }
@@ -112,8 +112,8 @@ fun XpWindowFrame(
 
     Box(
         modifier = baseModifier
-            .clip(RoundedCornerShape(topStart = 8.dp, topEnd = 8.dp))
-            .border(3.dp, if (isFocused) XpLunaBlue else XpBorderShadow, RoundedCornerShape(topStart = 8.dp, topEnd = 8.dp))
+            .clip(RoundedCornerShape(12.dp))
+            .border(2.dp, if (isFocused) NaturalBorderBlue else XpBorderShadow, RoundedCornerShape(12.dp))
             .background(XpWindowBg)
             .pointerInput(Unit) {
                 detectDragGestures(
@@ -132,7 +132,7 @@ fun XpWindowFrame(
         Column(modifier = Modifier.fillMaxSize()) {
             // Title Bar
             val titleGradient = if (isFocused) {
-                Brush.horizontalGradient(listOf(XpLunaBlueDark, XpLunaBlue, XpLunaBlueLight))
+                Brush.horizontalGradient(listOf(NaturalBorderBlue, NaturalSkyBlue))
             } else {
                 Brush.horizontalGradient(listOf(Color(0xFF7490C4), Color(0xFF94AFDF)))
             }
@@ -140,7 +140,7 @@ fun XpWindowFrame(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(30.dp)
+                    .height(32.dp)
                     .background(titleGradient)
                     .padding(horizontal = 8.dp),
                 verticalAlignment = Alignment.CenterVertically,
@@ -163,19 +163,19 @@ fun XpWindowFrame(
                     horizontalArrangement = Arrangement.spacedBy(4.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    // Minimize
+                    // Minimize (Natural Green Soft Theme button)
                     Box(
                         modifier = Modifier
                             .size(20.dp)
-                            .background(Color(0xFF3843C4), RoundedCornerShape(2.dp))
-                            .border(1.dp, Color.White, RoundedCornerShape(2.dp))
+                            .background(Color(0xFF3C911A), RoundedCornerShape(4.dp))
+                            .border(1.dp, Color.White.copy(0.4f), RoundedCornerShape(4.dp))
                             .clickable { onMinimize() },
                         contentAlignment = Alignment.BottomCenter
                     ) {
                         Box(
                             modifier = Modifier
-                                .padding(bottom = 4.dp)
-                                .size(10.dp, 2.dp)
+                                .padding(bottom = 5.dp)
+                                .size(9.dp, 2.dp)
                                 .background(Color.White)
                         )
                     }
@@ -184,28 +184,24 @@ fun XpWindowFrame(
                     Box(
                         modifier = Modifier
                             .size(20.dp)
-                            .background(Color(0xFF3843C4), RoundedCornerShape(2.dp))
-                            .border(1.dp, Color.White, RoundedCornerShape(2.dp))
+                            .background(Color(0xFF0D47A1), RoundedCornerShape(4.dp))
+                            .border(1.dp, Color.White.copy(0.4f), RoundedCornerShape(4.dp))
                             .clickable { onMaximize() },
                         contentAlignment = Alignment.Center
                     ) {
                         Box(
                             modifier = Modifier
-                                .size(9.dp)
+                                .size(8.dp)
                                 .border(1.5.dp, Color.White)
                         )
                     }
 
-                    // Close (Shiny Red Button)
+                    // Close (Natural Theme Red Button)
                     Box(
                         modifier = Modifier
                             .size(20.dp)
-                            .background(
-                                Brush.radialGradient(
-                                    listOf(Color(0xFFFF7E6B), Color(0xFFE04324), Color(0xFFB51E06))
-                                ), RoundedCornerShape(2.dp)
-                            )
-                            .border(1.dp, Color.White, RoundedCornerShape(2.dp))
+                            .background(Color(0xFFE21225), RoundedCornerShape(4.dp))
+                            .border(1.dp, Color.White.copy(0.4f), RoundedCornerShape(4.dp))
                             .clickable { onClose() },
                         contentAlignment = Alignment.Center
                     ) {
@@ -213,7 +209,7 @@ fun XpWindowFrame(
                             imageVector = Icons.Default.Close,
                             contentDescription = "Close",
                             tint = Color.White,
-                            modifier = Modifier.size(14.dp)
+                            modifier = Modifier.size(13.dp)
                         )
                     }
                 }

@@ -217,7 +217,7 @@ fun WelcomeScreen(viewModel: XPViewModel) {
             modifier = Modifier
                 .fillMaxHeight()
                 .weight(1f)
-                .background(Brush.verticalGradient(listOf(Color(0xFF0038A6), Color(0xFF0F5CE3))))
+                .background(Brush.verticalGradient(listOf(NaturalBorderBlue, NaturalSkyBlue)))
                 .padding(24.dp),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.End
@@ -252,7 +252,7 @@ fun WelcomeScreen(viewModel: XPViewModel) {
             modifier = Modifier
                 .fillMaxHeight()
                 .weight(1.3f)
-                .background(Brush.verticalGradient(listOf(Color(0xFF5A8EE4), Color(0xFF1E5EC2))))
+                .background(Brush.verticalGradient(listOf(NaturalSkyBlue, NaturalGrassGreen)))
                 .padding(24.dp),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.Start
@@ -342,19 +342,25 @@ fun DesktopWorkspaceScreen(viewModel: XPViewModel) {
             .fillMaxSize()
             .transformable(state = gestureState) // Gestures multitoque fluidos
     ) {
-        // Bliss Background Image
-        Image(
-            painter = painterResource(id = R.drawable.img_xp_bliss_1781913880186),
-            contentDescription = "Desktop Bliss Background",
+        // Natural Tones Background Gradient (Soft sky blue, light bright blue, grass green)
+        Box(
             modifier = Modifier
                 .fillMaxSize()
+                .background(
+                    Brush.verticalGradient(
+                        listOf(
+                            NaturalSkyBlue,
+                            NaturalLightBlue,
+                            NaturalGrassGreen
+                        )
+                    )
+                )
                 .graphicsLayer(
                     scaleX = scale,
                     scaleY = scale,
                     translationX = offsetState.x,
                     translationY = offsetState.y
-                ),
-            contentScale = ContentScale.Crop
+                )
         )
 
         // Desktop Icons Layout Grid
@@ -456,7 +462,7 @@ fun DesktopWorkspaceScreen(viewModel: XPViewModel) {
                 onClose = { showStartMenu = false },
                 modifier = Modifier
                     .align(Alignment.BottomStart)
-                    .padding(bottom = 40.dp, start = 2.dp)
+                    .padding(bottom = 48.dp, start = 2.dp)
             )
         }
 
@@ -465,21 +471,26 @@ fun DesktopWorkspaceScreen(viewModel: XPViewModel) {
             modifier = Modifier
                 .align(Alignment.BottomCenter)
                 .fillMaxWidth()
-                .height(40.dp)
-                .background(Brush.verticalGradient(listOf(XpLunaBlueLight, XpLunaBlue, XpLunaBlueDark)))
-                .border(1.dp, Color(0xFF5A8EE4)),
+                .height(48.dp)
+                .background(Brush.verticalGradient(listOf(NaturalTaskbarBlue.copy(alpha = 0.95f), NaturalTaskbarBlue)))
+                .border(width = 1.dp, color = Color.White.copy(0.3f)),
             verticalAlignment = Alignment.CenterVertically
         ) {
             // green Inicio button
             Box(
                 modifier = Modifier
-                    .width(100.dp)
+                    .width(110.dp)
                     .fillMaxHeight()
                     .background(
                         Brush.horizontalGradient(
-                            listOf(XpStartGreen, XpStartGreenDark)
+                            listOf(NaturalStartGreen, NaturalStartGreenLight)
                         ),
-                        RoundedCornerShape(topEnd = 10.dp, bottomEnd = 10.dp)
+                        RoundedCornerShape(topEnd = 24.dp, bottomEnd = 24.dp)
+                    )
+                    .border(
+                        width = 1.dp,
+                        color = Color.White.copy(0.2f),
+                        shape = RoundedCornerShape(topEnd = 24.dp, bottomEnd = 24.dp)
                     )
                     .clickable { showStartMenu = !showStartMenu },
                 contentAlignment = Alignment.Center
@@ -489,17 +500,18 @@ fun DesktopWorkspaceScreen(viewModel: XPViewModel) {
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Icon(
-                        imageVector = Icons.Default.Launch,
+                        imageVector = Icons.Default.GridView,
                         contentDescription = "Inicio Logo",
                         tint = Color.White,
-                        modifier = Modifier.size(16.dp)
+                        modifier = Modifier.size(20.dp)
                     )
                     Text(
-                        text = "inicio",
+                        text = "start",
                         color = Color.White,
                         fontWeight = FontWeight.Bold,
+                        fontStyle = androidx.compose.ui.text.font.FontStyle.Italic,
                         fontFamily = FontFamily.SansSerif,
-                        fontSize = 14.sp
+                        fontSize = 18.sp
                     )
                 }
             }
@@ -518,11 +530,11 @@ fun DesktopWorkspaceScreen(viewModel: XPViewModel) {
                     val tabColor = if (isFocused) Color(0xFF1E52C2) else Color(0xFF3C7BE0)
                     Box(
                         modifier = Modifier
-                            .width(100.dp)
-                            .fillMaxHeight(0.85f)
-                            .clip(RoundedCornerShape(3.dp))
+                            .width(105.dp)
+                            .fillMaxHeight(0.8f)
+                            .clip(RoundedCornerShape(6.dp))
                             .background(tabColor)
-                            .border(1.dp, Color.White.copy(0.3f), RoundedCornerShape(3.dp))
+                            .border(1.dp, Color.White.copy(0.3f), RoundedCornerShape(6.dp))
                             .clickable {
                                 if (isFocused) {
                                     viewModel.minimizeWindow(win.contentTag)
@@ -530,7 +542,7 @@ fun DesktopWorkspaceScreen(viewModel: XPViewModel) {
                                     viewModel.focusWindow(win.contentTag)
                                 }
                             }
-                            .padding(horizontal = 4.dp),
+                            .padding(horizontal = 6.dp),
                         contentAlignment = Alignment.CenterStart
                     ) {
                         Text(
@@ -550,8 +562,8 @@ fun DesktopWorkspaceScreen(viewModel: XPViewModel) {
                 modifier = Modifier
                     .width(180.dp)
                     .fillMaxHeight()
-                    .background(Color(0xFF0F8FE3))
-                    .border(1.dp, Color.White.copy(0.5f)),
+                    .background(NaturalTrayBlue)
+                    .border(width = 1.dp, color = NaturalBorderBlue),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceAround
             ) {
@@ -572,14 +584,25 @@ fun DesktopWorkspaceScreen(viewModel: XPViewModel) {
                     )
                 }
 
-                // Clock time
-                Text(
-                    text = clockTime,
-                    color = Color.White,
-                    fontSize = 11.sp,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(end = 4.dp)
-                )
+                // Clock time and Optimized label
+                Column(
+                    modifier = Modifier.padding(end = 4.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center
+                ) {
+                    Text(
+                        text = clockTime,
+                        color = Color.White,
+                        fontSize = 10.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+                    Text(
+                        text = "Optimizado",
+                        color = Color(0xFFD4EFFF),
+                        fontSize = 8.sp,
+                        fontWeight = FontWeight.Medium
+                    )
+                }
             }
         }
     }
@@ -600,16 +623,16 @@ fun DesktopShortcut(
     ) {
         Box(
             modifier = Modifier
-                .size(46.dp)
-                .background(Color.White.copy(0.18f), CircleShape)
-                .border(1.dp, Color.White.copy(0.3f), CircleShape),
+                .size(56.dp)
+                .background(Color.White.copy(0.20f), RoundedCornerShape(16.dp))
+                .border(1.dp, Color.White.copy(0.30f), RoundedCornerShape(16.dp)),
             contentAlignment = Alignment.Center
         ) {
             Icon(
                 imageVector = icon,
                 contentDescription = title,
-                tint = Color.White,
-                modifier = Modifier.size(24.dp)
+                tint = Color(0xFFE3F2FD),
+                modifier = Modifier.size(28.dp)
             )
         }
         Spacer(modifier = Modifier.height(6.dp))
