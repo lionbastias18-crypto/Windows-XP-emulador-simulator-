@@ -1,0 +1,6 @@
+{
+  "name": "Windows XP Retro",
+  "description": "Un nostálgico simulador de Windows XP optimizado para tabletas. Incluye suite retro de productividad, tienda de utilidades de bajo consumo, gestor de permisos de archivos y un escritorio táctil interactivo ultra fluido.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
